@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *head1,*head2,*temp,*new,*head3,*temp2,*temp3;
+struct node* create(struct node *head)
+{
+    int c=1;
+    while(c==1)
+    {
+        new=(struct node*)malloc(sizeof(struct node));
+        printf("\n enter the data : ");
+        scanf("%d",&new->data);
+        new->next=0;
+        if(head==0)
+        {
+            head=new;
+            temp=head;
+        }
+        else
+        {
+            temp->next=new;
+            temp=temp->next;
+        }
+        printf("\n enter the choice : ");
+        scanf("%d",&c);
+    }
+    return head;
+}
+struct node* add(struct node *head1,struct node *head2)
+{
+    temp=head1;
+    temp2=head2;
+    int rem=0;
+    while(temp!=0)
+    {
+        new=(struct node*)malloc(sizeof(struct node));
+        int i=temp->data+temp2->data+rem;
+        new->data=i%10;
+        rem=i/10;
+        new->next=0;
+        if(head3==0)
+        {
+            head3=new;
+            temp3=head3;
+        }
+        else
+        {
+            temp3->next=new;
+            temp3=temp3->next;
+        }
+        temp=temp->next;
+        temp2=temp2->next;
+    }
+    return head3;
+}
+void display(struct node* head)
+{
+    temp=head;
+    while(temp!=0)
+    {
+        printf("%d\t",temp->data);
+        temp=temp->next;
+    }
+}
+int main()
+{
+    printf("\n list 1");
+    head1= create(head1);
+    printf("\n list2");
+    head2=create(head2);
+    head3=add(head1,head2);
+    display(head3);
+}
